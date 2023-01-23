@@ -162,14 +162,3 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 PYGMY_API_ADDRESS = 'https://api.tree.bo'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'pygmy'),
-        'USER': os.environ.get('DB_USER', 'pygmy'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
-    }
-}
