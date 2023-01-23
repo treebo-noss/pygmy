@@ -53,7 +53,7 @@ class Configuration:
             'host': os.environ.get('DB_HOST', 'localhost'),
             'port': os.environ.get('DB_PORT', '5432'),
         }
-        database['url']: f"{database['engine']}://{database['user']}:{database['password']}@{database['host']}:{database['port']}/{database['db_name']}"
+        database['url'] = f"{database['engine']}://{database['user']}:{database['password']}@{database['host']}:{database['port']}/{database['db_name']}"
         self.database = database
         self.schema = self.cfg['pygmy']['schema']
         self.host = self.cfg['pygmy']['host']
