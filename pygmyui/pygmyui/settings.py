@@ -155,3 +155,21 @@ HOSTNAME = '127.0.0.1:8000'
 # Load tests if PYGMYUI_TEST environment variable is set
 if os.environ.get('PYGMYUI_TEST') is not None:
     from pygmyui.settings_tests import *    # pylint: disable=W0614, E0611, E0401
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ui.tree.bo',
+    'https://pygmyui.private-62e8e0edce29ec00014423cb.treebo.facets.cloud',
+]
+
+PYGMY_API_ADDRESS = 'https://api.tree.bo'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME', 'pygmy'),
+        'USER': os.environ.get('DB_USER', 'pygmy'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
+    }
+}

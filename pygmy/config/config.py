@@ -44,7 +44,15 @@ class Configuration:
         # TODO: handle automatic assignment
         self._read_cfg()
         self.debug = (self.cfg['pygmy']['debug'] == 'True')
-        self.database = dict(self.cfg['database'].items())
+        #self.database = dict(self.cfg['database'].items())
+        self.database = {
+            'engine': 'postgresql',
+            'db_name': os.environ.get('DB_NAME', 'pygmy'),
+            'user': os.environ.get('DB_USER', 'pygmy'),
+            'password': os.environ.get('DB_PASSWORD'),
+            'host': os.environ.get('DB_HOST', 'localhost'),
+            'port': os.environ.get('DB_PORT', '5432'),
+        }
         self.schema = self.cfg['pygmy']['schema']
         self.host = self.cfg['pygmy']['host']
         self.port = self.cfg['pygmy']['port']
