@@ -45,7 +45,7 @@ class Configuration:
         self._read_cfg()
         self.debug = (self.cfg['pygmy']['debug'] == 'True')
         #self.database = dict(self.cfg['database'].items())
-        self.database = {
+        database = {
             'engine': 'postgresql',
             'db_name': os.environ.get('DB_NAME', 'pygmy'),
             'user': os.environ.get('DB_USER', 'pygmy'),
@@ -53,6 +53,8 @@ class Configuration:
             'host': os.environ.get('DB_HOST', 'localhost'),
             'port': os.environ.get('DB_PORT', '5432'),
         }
+        database['url']: f"{databas['engine']}://{database['user']}:{database['password']}@{database['host']}:{database['port']}/{database['db_name']}"
+        self.database = database
         self.schema = self.cfg['pygmy']['schema']
         self.host = self.cfg['pygmy']['host']
         self.port = self.cfg['pygmy']['port']
