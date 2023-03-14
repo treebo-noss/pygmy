@@ -286,7 +286,10 @@ class LinkManager:
     @dbconnection
     def remove(self, db, links):
         short_codes = [link['short_code'] for link in links]
-        query = db.query(Link).filter(Link.short_code.in_(short_codes)).delete(synchronize_session=False)
+        query_object = db.query(Link).filter(Link.short_code.in_(short_codes))
+        link_ids = [link.id for link in query_object.all()]
+        query1 = db.query(ClickMeta).filter(ClickMeta.link_id.in_(link_ids)).delete(synchronize_session=False)
+        query2 = query_object.delete(synchronize_session=False)
         try:
             db.commit()
         except IntegrityError:
